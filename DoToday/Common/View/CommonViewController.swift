@@ -11,5 +11,5 @@ import Then
 import SnapKit
 
 internal class CommonViewController: UIViewController {
-    
+    weak var coordinator: AppCoordinator?
 }

@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ViewController: CommonViewController {
+class ViewController: CommonViewController, Storyboarded {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
