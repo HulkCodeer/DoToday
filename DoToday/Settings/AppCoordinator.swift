@@ -20,8 +20,8 @@ internal final class AppCoordinator: Coordinatable {
     }
     
     func start() {
-        let vc = ViewController.instantiate()
+        let vc = MainViewController.instantiate()
         vc.coordinator = self
-        navigationController.pushViewController(vc, animated: false)
+        self.navigationController.pushViewController(vc, animated: false)
     }
 }
