@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		1157855D241FC41F000BEA10 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1157855C241FC41F000BEA10 /* AppCoordinator.swift */; };
 		11578560241FC723000BEA10 /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1157855F241FC723000BEA10 /* Storyboarded.swift */; };
+		118E6AEF2421155E006D2A46 /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118E6AEE2421155E006D2A46 /* TestCell.swift */; };
 		119307E3241E5E48008D4167 /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119307E2241E5E48008D4167 /* CommonViewController.swift */; };
+		1199EF43242263FD00B9D92C /* DoTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199EF42242263FD00B9D92C /* DoTodayCell.swift */; };
 		11CD88DC2414A74200D326A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CD88DB2414A74200D326A9 /* AppDelegate.swift */; };
 		11CD88E02414A74200D326A9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CD88DF2414A74200D326A9 /* MainViewController.swift */; };
 		11CD88E32414A74200D326A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11CD88E12414A74200D326A9 /* Main.storyboard */; };
@@ -22,7 +24,9 @@
 		11578555241FBD53000BEA10 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = "../../../Downloads/realm-swift-4.3.2/ios/swift-11.3/Realm.framework"; sourceTree = "<group>"; };
 		1157855C241FC41F000BEA10 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		1157855F241FC723000BEA10 /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
+		118E6AEE2421155E006D2A46 /* TestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCell.swift; sourceTree = "<group>"; };
 		119307E2241E5E48008D4167 /* CommonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewController.swift; sourceTree = "<group>"; };
+		1199EF42242263FD00B9D92C /* DoTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoTodayCell.swift; sourceTree = "<group>"; };
 		11CD88D82414A74200D326A9 /* DoToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11CD88DB2414A74200D326A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11CD88DF2414A74200D326A9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +83,31 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1199EF3F242262D400B9D92C /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				1199EF412422630800B9D92C /* Cells */,
+				11CD88DF2414A74200D326A9 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		1199EF40242262E200B9D92C /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1199EF3F242262D400B9D92C /* Main */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		1199EF412422630800B9D92C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1199EF42242263FD00B9D92C /* DoTodayCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		11CD88CF2414A74200D326A9 = {
 			isa = PBXGroup;
 			children = (
@@ -100,15 +129,16 @@
 		11CD88DA2414A74200D326A9 /* DoToday */ = {
 			isa = PBXGroup;
 			children = (
+				1199EF40242262E200B9D92C /* Classes */,
 				1157855E241FC70D000BEA10 /* Extension */,
 				11578559241FC0C8000BEA10 /* Settings */,
 				119307E0241E5E2D008D4167 /* Common */,
 				11CD88DB2414A74200D326A9 /* AppDelegate.swift */,
-				11CD88DF2414A74200D326A9 /* MainViewController.swift */,
 				11CD88E12414A74200D326A9 /* Main.storyboard */,
 				11CD88E42414A74300D326A9 /* Assets.xcassets */,
 				11CD88E62414A74300D326A9 /* LaunchScreen.storyboard */,
 				11CD88E92414A74300D326A9 /* Info.plist */,
+				118E6AEE2421155E006D2A46 /* TestCell.swift */,
 			);
 			path = DoToday;
 			sourceTree = "<group>";
@@ -247,6 +277,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				1157855D241FC41F000BEA10 /* AppCoordinator.swift in Sources */,
+				1199EF43242263FD00B9D92C /* DoTodayCell.swift in Sources */,
+				118E6AEF2421155E006D2A46 /* TestCell.swift in Sources */,
 				11CD88E02414A74200D326A9 /* MainViewController.swift in Sources */,
 				11578560241FC723000BEA10 /* Storyboarded.swift in Sources */,
 				119307E3241E5E48008D4167 /* CommonViewController.swift in Sources */,
