@@ -16,7 +16,13 @@ private enum DoTodayCellConfiguration {
 
 class MainViewController: CommonViewController, Storyboarded {
     
-    let data = ["asdfasdfasdfasdfasdfasdfasdfasdf","asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"]
+    let data = ["asdfasdfasdfasdfasdfasdfasdfasdf","asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"
+    ,"pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"
+    ,"pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"
+    ,"pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"
+    ,"pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"
+    ,"pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"
+    ,"pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"]
     
     // 공지사항 가로 컬렉션뷰
     private lazy var doTodayCollectionView: UICollectionView = {
@@ -56,7 +62,7 @@ class MainViewController: CommonViewController, Storyboarded {
     }
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return data.count
     }
@@ -68,9 +74,14 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         cell.testLbl.text = data[indexPath.row]
         cell.layer.borderWidth = DoTodayCellConfiguration.borderWidth
         cell.layer.borderColor = UIColor.lightGray.cgColor
-        cell.maxWidth = collectionView.bounds.width - DoTodayCellConfiguration.spacing
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DoTodayCellConfiguration.reuseId, for: indexPath) as! DoTodayCell
+        
+        return cell.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
     }
 }
 
