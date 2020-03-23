@@ -9,31 +9,27 @@
 import UIKit
 
 private enum DoTodayCellConfiguration {
-    static let spacing: CGFloat = 15
+    static let spacing: CGFloat = 10
     static let borderWidth: CGFloat = 0.5
     static let reuseId = "DoTodayCell"
 }
 
 class MainViewController: CommonViewController, Storyboarded {
     
-    let data = ["asdfasdfasdfasdfasdfasdfasdfasdf","asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"
-    ,"pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"
-    ,"pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"
-    ,"pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"
-    ,"pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"
-    ,"pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"
-    ,"pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe","pawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwepawerlwe"]
+    let data = ["2","1"]
     
     // 공지사항 가로 컬렉션뷰
     private lazy var doTodayCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         if #available(iOS 11.0, *) {
             layout.sectionInsetReference = .fromSafeArea
         }
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        view.register(DoTodayCell.self, forCellWithReuseIdentifier: DoTodayCell.reueseId)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.contentInset = UIEdgeInsets.zero
         view.backgroundColor = UIColor.white
@@ -58,7 +54,6 @@ class MainViewController: CommonViewController, Storyboarded {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.doTodayCollectionView.register(DoTodayCell.self, forCellWithReuseIdentifier: "DoTodayCell")
     }
 }
 
@@ -71,17 +66,18 @@ extension MainViewController: UICollectionViewDelegateFlowLayout, UICollectionVi
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DoTodayCellConfiguration.reuseId, for: indexPath) as! DoTodayCell
         
-        cell.testLbl.text = data[indexPath.row]
+        cell.bind(data: data[indexPath.row])
         cell.layer.borderWidth = DoTodayCellConfiguration.borderWidth
-        cell.layer.borderColor = UIColor.lightGray.cgColor
+        cell.layer.borderColor = UIColor.lightGray.cgColor        
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DoTodayCellConfiguration.reuseId, for: indexPath) as! DoTodayCell
-        
-        return cell.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        print("PARK TEST inset left : \(collectionView.conte.left)")
+        print("PARK TEST inset left : \(collectionView.contentInset.right)")
+        print("PARK TEST inset top : \(collectionView.contentInset.top)")
+        print("PARK TEST inset bottom : \(collectionView.contentInset.bottom)")
+        return CGSize(width: UIScreen.main.bounds.width/2 - collectionView.contentInset.left, height: 100)
     }
 }
-

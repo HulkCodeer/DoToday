@@ -10,60 +10,37 @@ import UIKit
 
 internal final class DoTodayCell: UICollectionViewCell {
     
-    var maxWidth: CGFloat? = nil
+    static let reueseId = "DoTodayCell"
     
-    internal lazy var testLbl = UILabel().then {
+    internal lazy var mainLbl = UILabel().then {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.textColor = .black
-        $0.numberOfLines = 10
-        $0.lineBreakMode = .byWordWrapping
-        $0.adjustsFontSizeToFitWidth = true
-    }
-        
-    override func awakeFromNib() {
-        super.awakeFromNib()
+        $0.numberOfLines = 1
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        self.contentView.addSubview(self.testLbl)
-        self.testLbl.snp.makeConstraints{
-            $0.edges.equalTo(safeAreaLayoutGuide.snp.edges)
-        }
-        
-        guard let _maxWidth = maxWidth else { return }
-        
-        self.testLbl.preferredMaxLayoutWidth = _maxWidth
-        print("PARK TEST \(_maxWidth)")
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        self.contentView.snp.makeConstraints{
-            $0.edges.equalTo(safeAreaLayoutGuide.snp.edges)
-        }
-        
-        print("PARK TEST contentView width : \(contentView.frame.width)")
-        
-        self.contentView.addSubview(self.testLbl)
-        self.testLbl.snp.makeConstraints{
-            $0.top.bottom.equalToSuperview()
-            $0.centerY.equalToSuperview()
-        }
-        
-        print("PARK TEST testLbl width : \(testLbl.frame.width)")
+        self.makeUI()
     }
     
-    override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
-        let size = contentView.systemLayoutSizeFitting(layoutAttributes.size)
-        var frame = layoutAttributes.frame
-        frame.size.width = UIScreen.main.bounds.width
-        frame.size.height = size.height
-        layoutAttributes.frame = frame
-        
-        return layoutAttributes
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.makeUI()
+    }
+    
+    func makeUI() {
+        self.contentView.addSubview(self.mainLbl)
+        self.mainLbl.snp.makeConstraints{
+            $0.leading.top.trailing.equalToSuperview()
+            $0.height.equalTo(100)
+        }
+    }
+    
+    func bind(data: String) {
+        self.mainLbl.text = data
     }
 }
