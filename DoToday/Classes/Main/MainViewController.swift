@@ -8,47 +8,28 @@
 
 import UIKit
 
-private enum DoTodayCellConfiguration {
-    static let spacing: CGFloat = 10
-    static let borderWidth: CGFloat = 0.5
-    static let reuseId = "DoTodayCell"
-}
-
-class MainViewController: CommonViewController, Storyboarded {
-    
-    let data = ["2","1"]
-    
-    // 공지사항 가로 컬렉션뷰
-    private lazy var doTodayCollectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        if #available(iOS 11.0, *) {
-            layout.sectionInsetReference = .fromSafeArea
-        }
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.register(DoTodayCell.self, forCellWithReuseIdentifier: DoTodayCell.reueseId)
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.contentInset = UIEdgeInsets.zero
-        view.backgroundColor = UIColor.white
-        view.dataSource = self
-        view.delegate = self
-        return view
-    }()
-    
+class MainViewController: CommonViewController {
+        
     private lazy var testLbl = UILabel().then {
         $0.text = "하이"
+    }
+    
+    private lazy var doTodayTableView = UITableView().then {
+        $0.separatorStyle = .singleLine
+        $0.estimatedRowHeight = 200
+        $0.rowHeight = UITableView.automaticDimension
+        $0.delegate = self
+        $0.dataSource = self
     }
     
     override func loadView() {
         super.loadView()
         
-        self.view.addSubview(self.doTodayCollectionView)
-        self.doTodayCollectionView.snp.makeConstraints{
-            $0.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+        contentView.addSubview(self.doTodayTableView)
+        self.doTodayTableView.snp.makeConstraints{
+            $0.edges.equalToSuperview()
         }
+                
     }
         
     override func viewDidLoad() {
@@ -57,27 +38,16 @@ class MainViewController: CommonViewController, Storyboarded {
     }
 }
 
-extension MainViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return data.count
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DoTodayCellConfiguration.reuseId, for: indexPath) as! DoTodayCell
-        
-        cell.bind(data: data[indexPath.row])
-        cell.layer.borderWidth = DoTodayCellConfiguration.borderWidth
-        cell.layer.borderColor = UIColor.lightGray.cgColor        
-        
-        return cell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        print("PARK TEST inset left : \(collectionView.conte.left)")
-        print("PARK TEST inset left : \(collectionView.contentInset.right)")
-        print("PARK TEST inset top : \(collectionView.contentInset.top)")
-        print("PARK TEST inset bottom : \(collectionView.contentInset.bottom)")
-        return CGSize(width: UIScreen.main.bounds.width/2 - collectionView.contentInset.left, height: 100)
-    }
+    
 }
+
+

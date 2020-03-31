@@ -12,6 +12,7 @@
 		118E6AEF2421155E006D2A46 /* TestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 118E6AEE2421155E006D2A46 /* TestCell.swift */; };
 		119307E3241E5E48008D4167 /* CommonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119307E2241E5E48008D4167 /* CommonViewController.swift */; };
 		1199EF43242263FD00B9D92C /* DoTodayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199EF42242263FD00B9D92C /* DoTodayCell.swift */; };
+		11CCE30C24308060000B3DD9 /* InsertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CCE30B24308060000B3DD9 /* InsertViewController.swift */; };
 		11CD88DC2414A74200D326A9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CD88DB2414A74200D326A9 /* AppDelegate.swift */; };
 		11CD88E02414A74200D326A9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11CD88DF2414A74200D326A9 /* MainViewController.swift */; };
 		11CD88E32414A74200D326A9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11CD88E12414A74200D326A9 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 		118E6AEE2421155E006D2A46 /* TestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCell.swift; sourceTree = "<group>"; };
 		119307E2241E5E48008D4167 /* CommonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewController.swift; sourceTree = "<group>"; };
 		1199EF42242263FD00B9D92C /* DoTodayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoTodayCell.swift; sourceTree = "<group>"; };
+		11CCE30B24308060000B3DD9 /* InsertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertViewController.swift; sourceTree = "<group>"; };
 		11CD88D82414A74200D326A9 /* DoToday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DoToday.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11CD88DB2414A74200D326A9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		11CD88DF2414A74200D326A9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		1199EF40242262E200B9D92C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				11CCE30A2430803E000B3DD9 /* Insert */,
 				1199EF3F242262D400B9D92C /* Main */,
 			);
 			path = Classes;
@@ -106,6 +109,14 @@
 				1199EF42242263FD00B9D92C /* DoTodayCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		11CCE30A2430803E000B3DD9 /* Insert */ = {
+			isa = PBXGroup;
+			children = (
+				11CCE30B24308060000B3DD9 /* InsertViewController.swift */,
+			);
+			path = Insert;
 			sourceTree = "<group>";
 		};
 		11CD88CF2414A74200D326A9 = {
@@ -277,6 +288,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1157855D241FC41F000BEA10 /* AppCoordinator.swift in Sources */,
+				11CCE30C24308060000B3DD9 /* InsertViewController.swift in Sources */,
 				1199EF43242263FD00B9D92C /* DoTodayCell.swift in Sources */,
 				118E6AEF2421155E006D2A46 /* TestCell.swift in Sources */,
 				11CD88E02414A74200D326A9 /* MainViewController.swift in Sources */,

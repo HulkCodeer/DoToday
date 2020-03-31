@@ -9,7 +9,7 @@
 import UIKit
 
 protocol Coordinatable {
-    func start()
+    func startMain()
 }
 
 internal final class AppCoordinator: Coordinatable {
@@ -17,10 +17,17 @@ internal final class AppCoordinator: Coordinatable {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.navigationController.navigationBar.isHidden = true
     }
     
-    func start() {
-        let vc = MainViewController.instantiate()
+    func startMain() {
+        let vc = MainViewController()
+        vc.coordinator = self
+        self.navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func startAddItem() {
+        let vc = InsertViewController()
         vc.coordinator = self
         self.navigationController.pushViewController(vc, animated: false)
     }
